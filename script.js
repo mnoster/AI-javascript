@@ -23,9 +23,9 @@ var ph3 = new BeachPhotos("IMAGE3");
 
 var allPhotos = [ph1,ph2,ph3];
 
-function photoTakenHere(b1,ph2){
+function photoTakenHere(b1,ph1){
     if(b1 == true && ph1 == true){
         return true;
     }
 }
- 
+//-----------------
