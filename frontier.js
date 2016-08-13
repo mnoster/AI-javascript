@@ -2,6 +2,15 @@
  * Created by njporter10 on 8/12/16.
  */
 
+
+$('.btn').on('click',function() {
+    console.log('pc: ', printer(pc));
+});
+
+$('.page').on('click', function(){
+    console.log("hello");
+});
+
 //----------------Search Algorithm-------------
 // it will need a DEFAULT condition and a GOAL condition
 //it will then evaluate each option it can take(starting w/ the default) until it
@@ -10,37 +19,20 @@
 //--------Frontier Search Algorithm-----------
 // Each node has: its data, a set of connected nodes, & a path ( a list of connected nodes)
 
-
-
-// HELPER FUNCTION1 - helps pick a path to check from list
-//INPUT is a list of paths
-//OUTPUT is a single path
-//EFFECT :select & remove path, return that path
-//NOTE: ypu can modify the position of the position assignment to change the Search Strategy;
-
-function pickPath(frontier){
-    var position = 0;
-    var ret = frontier[position];
-    frontier.splice(position,1);
-    return ret;
-}
-
-
-
-//        Path: a list of nodes
-//can be modified to include more methods/fields
-function Path(){
-    this.contents = [];
-}
-
-
 //           Nodes
 // has a LIST of other connected nodes and CONTENT,
 // it can search all descendant nodes to find a solution
 function Nodes(c){
     this.contents = c;
     this.children = [];
+    this.getContents = function (){
+        return this.contents;
+    };
+    this.getChildren = function(){
+        return this.children;
+    }
 }
+
 
 //  MAIN ALGORITHM
 function search(query,start){
@@ -76,6 +68,23 @@ function search(query,start){
 }
 
 
+
+
+// HELPER FUNCTION1 - helps pick a path to check from list
+//INPUT is a list of paths
+//OUTPUT is a single path
+//EFFECT :select & remove path, return that path
+//NOTE: ypu can modify the position of the position assignment to change the Search Strategy;
+
+function pickPath(frontier){
+    var position = 0;
+    var ret = frontier[position];
+    frontier.splice(position,1);
+    return ret;
+}
+
+
+
 //   HELPER FUNCTION2 - checks if the last node in the path is a solution
 // One of the function inputs provides the solution
 //INPUT - a path, node contents that have solution,<same data type as Node's container
@@ -83,7 +92,7 @@ function search(query,start){
 //EFFECT - outputs True if path contains GOAL
 
 function hasGoal(s,p){
-    for( i in p.contents){
+    for(var i in p.contents){
         if(p.contents[i].contents == s)return true;
         {
             return false;
@@ -92,12 +101,21 @@ function hasGoal(s,p){
 }
 
 
+
+//        Path: a list of nodes
+//can be modified to include more methods/fields
+function Path(){
+    this.contents = [];
+}
+
+
+
 // testing function
 function printer(p){
     if(p == false)return "No Solution Found";
     else{
         var s = "Solution Found! Path: ";
-        for( i = 0; i <p.contents.length ; i++){
+        for(var i = 0; i <p.contents.length ; i++){
             s += p.contents[i].contents + " , ";
         }
         return s;
@@ -116,12 +134,14 @@ a.children.push(b);
 a.children.push(c);
 c.children.push(d);
 
+
 //test search 
-pa = search('a', a);
-pc = search('c', a);
-pd = search('d', a);
-pg = search('g', a);
-console.log('pa: ', printer(pa));
-console.log("pc: ", printer(pc));
-console.log("pd: ", printer(pd));
-console.log("pg: ", printer(pg));
+var pa = search('a', a);
+var pc = search('c', a);
+var pd = search('d', a);
+var pg = search('g', a);
+
+
+// console.log("pc: ", printer(pc));
+// console.log("pd: ", printer(pd));
+// console.log("pg: ", printer(pg));
