@@ -11,16 +11,16 @@ function moveDog() {
 
         switch (e.keyCode) {
             case 37:  //left
-                $(dog).css('left', position.left - 20 + "px");
+                $(dog).css('left', position.left - 50 + "px");
                 break;
             case 38:    //up
-                $(dog).css('top', position.top - 20 + "px");
+                $(dog).css('top', position.top - 50 + "px");
                 break;
             case 39:  //right
-                $(dog).css('left', position.left + 20 + "px");
+                $(dog).css('left', position.left + 50 + "px");
                 break;
             case 40: //Down
-                $(dog).css('top', position.top + 20 + "px");
+                $(dog).css('top', position.top + 50 + "px");
                 break;
         }
 
@@ -36,3 +36,17 @@ var balloons = function(){
     this.speed = 20;
     this.maxNumber = 50;
 };
+
+var gravity = 0.6;
+var stopSpeed = 0.2;
+var dissipation = .08;
+
+var x = width/2;
+var y = radius;
+var radius = 50;
+var xSpeed = 0;
+var ySpeed = 0;
+
+function displayBall (){
+
+}
